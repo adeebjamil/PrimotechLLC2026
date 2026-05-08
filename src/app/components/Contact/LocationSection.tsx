@@ -25,7 +25,7 @@ const LocationSection = () => {
                             <div>
                                 <h4 className="text-xl font-black text-[#001F3F] mb-2">Dubai Office</h4>
                                 <p className="text-gray-500 font-medium leading-relaxed mb-6">
-                                    Sultan Khalifa Al Habtoor Sheds, Warehouse no 98 - Nadd Al Hamar - Dubai
+                                    Shop 23, Musthafa Building, Satellite Market, Deira, Dubai
                                 </p>
                                 <a 
                                     href="https://www.google.com/maps/place/Mustafa+Building+Materials+Company/@25.190361,55.3739898,797m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3e5f434b80f4bb19:0x2926ff4d4ba2c4f!8m2!3d25.190361!4d55.3739898!16s%2Fg%2F11bbwnj9np?hl=en&entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D" 

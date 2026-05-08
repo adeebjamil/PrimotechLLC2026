@@ -4,15 +4,18 @@ import ProductSeriesShowcase from '@/app/components/Home/ProductSeriesShowcase';
 import IndustryRecognition from '@/app/components/Home/IndustryRecognition';
 import FAQ from '@/app/components/Home/FAQ';
 import HomeContact from '@/app/components/Home/HomeContact';
-import FeaturedProducts from '@/app/components/Home/FeaturedProducts';
-import CategorySection from '@/app/components/Home/CategorySection';
-import WhyChooseUs from '@/app/components/Home/WhyChooseUs';
+import dbConnect from '@/lib/dbConnect';
+import Product from '@/models/Product';
 
-export default function Home() {
+export default async function Home() {
+  await dbConnect();
+  const products = await Product.find({ status: 'published' }).sort({ createdAt: -1 }).limit(10).lean();
+
   return (
     <main>
+      <h1 className="sr-only">PrimoTech LLC | Leading CCTV & Security Solutions Supplier in the Middle East</h1>
       <Hero />
-      <LatestProducts />
+      <LatestProducts initialProducts={JSON.parse(JSON.stringify(products))} />
       <ProductSeriesShowcase />
       <IndustryRecognition />
       <FAQ />

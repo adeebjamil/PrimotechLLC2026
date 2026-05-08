@@ -49,14 +49,16 @@ const SubCategoryCard = ({ subcategory, categorySlug }: { subcategory: SubCatego
     );
 };
 
-const SubCategoriesListing = ({ categoryName, categorySlug }: { categoryName: string; categorySlug: string }) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [subcategories, setSubcategories] = useState<SubCategory[]>([]);
-    const [filteredSubcategories, setFilteredSubcategories] = useState<SubCategory[]>([]);
+const SubCategoriesListing = ({ categoryName, categorySlug, initialSubcategories = [] }: { categoryName: string; categorySlug: string; initialSubcategories?: SubCategory[] }) => {
+    const [isLoading, setIsLoading] = useState(initialSubcategories.length === 0);
+    const [subcategories, setSubcategories] = useState<SubCategory[]>(initialSubcategories);
+    const [filteredSubcategories, setFilteredSubcategories] = useState<SubCategory[]>(initialSubcategories);
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
+            if (initialSubcategories.length > 0 && subcategories.length > 0) return;
+            
             try {
                 setIsLoading(true);
                 const res = await fetch(`/api/subcategories?parentCategory=${encodeURIComponent(categoryName)}`);
@@ -73,17 +75,10 @@ const SubCategoriesListing = ({ categoryName, categorySlug }: { categoryName: st
             }
         };
 
-        if (categoryName) {
+        if (categoryName && initialSubcategories.length === 0) {
             fetchData();
         }
-    }, [categoryName]);
-
-    useEffect(() => {
-        const filtered = subcategories.filter(sub => 
-            sub.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        setFilteredSubcategories(filtered);
-    }, [searchQuery, subcategories]);
+    }, [categoryName, initialSubcategories.length, subcategories.length]);
 
     return (
         <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">

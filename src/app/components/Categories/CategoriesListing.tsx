@@ -73,15 +73,18 @@ const CategoryCard = ({ category }: { category: Category }) => {
     );
 };
 
-const CategoriesListing = () => {
-    const [categories, setCategories] = useState<Category[]>([]);
-    const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
-    const [loading, setLoading] = useState(true);
+const CategoriesListing = ({ initialCategories = [] }: { initialCategories?: Category[] }) => {
+    const [categories, setCategories] = useState<Category[]>(initialCategories);
+    const [filteredCategories, setFilteredCategories] = useState<Category[]>(initialCategories);
+    const [loading, setLoading] = useState(initialCategories.length === 0);
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const fetchCategories = async () => {
+            if (initialCategories.length > 0 && categories.length > 0) return;
+            
             try {
+                setLoading(true);
                 const response = await fetch('/api/categories');
                 const data = await response.json();
                 if (data.success) {
@@ -95,8 +98,11 @@ const CategoriesListing = () => {
                 setLoading(false);
             }
         };
-        fetchCategories();
-    }, []);
+        
+        if (initialCategories.length === 0) {
+            fetchCategories();
+        }
+    }, [initialCategories.length, categories.length]);
 
     useEffect(() => {
         const filtered = categories.filter(cat => 

@@ -1,6 +1,7 @@
 'use client';
 
 import { FaArrowRight, FaWifi, FaServer, FaShieldAlt } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface SeriesItem {
     id: number;
@@ -72,10 +73,11 @@ const ProductSeriesShowcase = () => {
                             {/* Product Image Layer - Floating and Large */}
                             <div className="absolute top-12 left-0 right-0 h-[300px] flex items-center justify-center z-10">
                                 <div className="relative w-full h-full transform group-hover:scale-110 group-hover:-translate-y-4 transition-all duration-1000 ease-out p-12">
-                                    <img 
+                                    <Image 
                                         src={item.image} 
-                                        alt={item.title} 
-                                        className="w-full h-full object-contain filter drop-shadow-[0_20px_50px_rgba(20,200,212,0.3)]"
+                                        alt={`${item.title} - ${item.subtitle}`} 
+                                        fill
+                                        className="object-contain filter drop-shadow-[0_20px_50px_rgba(20,200,212,0.3)]"
                                     />
                                 </div>
                             </div>

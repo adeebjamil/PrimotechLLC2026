@@ -33,9 +33,26 @@ const FAQ = () => {
             answer: "We are always looking to expand our global network. You can apply through our Partner Program portal on the website or contact our sales team directly to discuss collaboration opportunities and exclusive business benefits."
         }
     ];
+    
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
 
     return (
         <section className="py-24 px-6 md:px-12 lg:px-24 bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
             <div className="max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-20">

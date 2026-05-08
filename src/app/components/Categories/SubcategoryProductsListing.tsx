@@ -80,14 +80,16 @@ const ProductCard = ({ product, categorySlug, subcategorySlug }: { product: Prod
     );
 };
 
-const SubcategoryProductsListing = ({ subcategoryName, categorySlug, subcategorySlug }: { subcategoryName: string, categorySlug: string, subcategorySlug: string }) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [products, setProducts] = useState<Product[]>([]);
-    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+const SubcategoryProductsListing = ({ subcategoryName, categorySlug, subcategorySlug, initialProducts = [] }: { subcategoryName: string, categorySlug: string, subcategorySlug: string, initialProducts?: Product[] }) => {
+    const [isLoading, setIsLoading] = useState(initialProducts.length === 0);
+    const [products, setProducts] = useState<Product[]>(initialProducts);
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>(initialProducts);
     const [searchQuery, setSearchQuery] = useState('');
     const [error, setError] = useState<string | null>(null);
 
     const fetchData = useCallback(async () => {
+        if (initialProducts.length > 0 && products.length > 0) return;
+        
         try {
             setIsLoading(true);
             setError(null);
@@ -108,11 +110,13 @@ const SubcategoryProductsListing = ({ subcategoryName, categorySlug, subcategory
         } finally {
             setIsLoading(false);
         }
-    }, [subcategoryName]);
+    }, [subcategoryName, initialProducts, products.length]);
 
     useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+        if (initialProducts.length === 0) {
+            fetchData();
+        }
+    }, [fetchData, initialProducts.length]);
 
     useEffect(() => {
         const filtered = products.filter(prod => 

@@ -42,7 +42,7 @@ const HomeContact = () => {
                         </div>
                         <div>
                             <p className="text-gray-400 font-bold uppercase tracking-[0.3em] text-xs mb-2">Support Line</p>
-                            <p className="text-[#001F3F] text-3xl font-black tracking-tight">+971 4 123 4567</p>
+                            <p className="text-[#001F3F] text-3xl font-black tracking-tight">971 52 879 6664</p>
                         </div>
                     </div>
                 </div>

@@ -1,56 +1,73 @@
-import React from 'react';
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { FaChevronRight, FaHome } from 'react-icons/fa';
 
-export interface BreadcrumbItem {
-  label: string;
-  href: string;
-}
+const Breadcrumbs = () => {
+  const pathname = usePathname();
+  if (pathname === '/') return null;
 
-interface BreadcrumbsProps {
-  items: BreadcrumbItem[];
-}
+  const pathSegments = pathname.split('/').filter((v) => v);
+  
+  const breadcrumbs = pathSegments.map((segment, index) => {
+    const href = `/${pathSegments.slice(0, index + 1).join('/')}`;
+    const label = segment
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, (l) => l.toUpperCase());
+    
+    return { label, href };
+  });
 
-const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
-  if (!items || items.length === 0) return null;
+  // Structured Data (AEO/GEO)
+  const breadcrumbList = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://primotech-llc.com"
+      },
+      ...breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": crumb.label,
+        "item": `https://primotech-llc.com${crumb.href}`
+      }))
+    ]
+  };
 
   return (
-    <nav aria-label="Breadcrumb" className="w-full max-w-4xl mx-auto px-4 py-4 md:py-6 flex items-center text-sm font-medium text-gray-500 overflow-x-auto">
-      <ol className="flex items-center space-x-2 whitespace-nowrap">
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
-
-          return (
-            <li key={index} className="flex items-center">
-              {isLast ? (
-                // Current Page
-                <span className="text-gray-900 font-semibold" aria-current="page">
-                  {item.label}
-                </span>
-              ) : (
-                // Links to previous pages
-                <>
-                  <Link
-                    href={item.href}
-                    className="hover:text-[#21b392] transition-colors duration-200 cursor-pointer"
-                  >
-                    {item.label}
-                  </Link>
-                  {/* Chevron separator */}
-                  <svg
-                    className="w-4 h-4 text-gray-400 mx-2 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </>
-              )}
+    <nav aria-label="Breadcrumb" className="bg-gray-50/50 py-4 border-b border-gray-100">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }}
+      />
+      <div className="max-w-7xl mx-auto px-6">
+        <ol className="flex items-center gap-3 text-sm font-medium text-gray-500">
+          <li className="flex items-center">
+            <Link href="/" className="hover:text-[#14C8D4] transition-colors flex items-center gap-2">
+              <FaHome className="text-base" />
+              <span className="hidden md:inline">Home</span>
+            </Link>
+          </li>
+          {breadcrumbs.map((crumb, index) => (
+            <li key={crumb.href} className="flex items-center gap-3">
+              <FaChevronRight className="text-[10px] text-gray-300" />
+              <Link
+                href={crumb.href}
+                className={`hover:text-[#14C8D4] transition-colors capitalize ${
+                  index === breadcrumbs.length - 1 ? 'text-[#001F3F] font-bold pointer-events-none' : ''
+                }`}
+              >
+                {crumb.label}
+              </Link>
             </li>
-          );
-        })}
-      </ol>
+          ))}
+        </ol>
+      </div>
     </nav>
   );
 };

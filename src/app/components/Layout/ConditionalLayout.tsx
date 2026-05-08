@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Breadcrumbs from './Breadcrumbs';
 
 export default function ConditionalLayout({
     children,
@@ -19,6 +20,7 @@ export default function ConditionalLayout({
     return (
         <>
             <Navbar />
+            <Breadcrumbs />
             <main className="flex-grow">{children}</main>
             <Footer />
         </>

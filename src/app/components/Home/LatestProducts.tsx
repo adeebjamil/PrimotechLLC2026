@@ -10,9 +10,13 @@ interface Product {
     images: string[];
 }
 
-const LatestProducts = () => {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
+const LatestProducts = ({ initialProducts = [] }: { initialProducts?: Product[] }) => {
+    const [products, setProducts] = useState<Product[]>(
+        initialProducts.length > 0 
+            ? [...initialProducts, ...initialProducts, ...initialProducts] 
+            : []
+    );
+    const [loading, setLoading] = useState(initialProducts.length === 0);
     const scrollRef = useRef<HTMLDivElement>(null);
     const isPausedRef = useRef(false);
 
@@ -27,13 +31,13 @@ const LatestProducts = () => {
 
     useEffect(() => {
         const fetchLatest = async () => {
+            if (initialProducts.length > 0 && products.length > 0) return;
+            
             try {
                 const response = await fetch('/api/products');
                 const data = await response.json();
                 if (data.success && data.data && data.data.length > 0) {
-                    // Filter to ensure products have names and images
                     const validProducts = data.data.filter((p: Product) => p.name && p.images?.length > 0);
-                    // Use all valid products, and triple them for the infinite scroll
                     setProducts([...validProducts, ...validProducts, ...validProducts]);
                 }
             } catch (error) {
@@ -42,8 +46,11 @@ const LatestProducts = () => {
                 setLoading(false);
             }
         };
-        fetchLatest();
-    }, []);
+        
+        if (initialProducts.length === 0) {
+            fetchLatest();
+        }
+    }, [initialProducts.length, products.length]);
 
     // Auto-scroll logic
     useEffect(() => {

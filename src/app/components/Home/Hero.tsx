@@ -145,9 +145,9 @@ const Hero = () => {
 
                         {/* Animated Title */}
                         <div className="overflow-hidden mb-2">
-                            <h1 className={`text-white text-6xl md:text-8xl font-black leading-[0.8] transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
+                            <h2 className={`text-white text-6xl md:text-8xl font-black leading-[0.8] transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
                                 {currentData.title}
-                            </h1>
+                            </h2>
                         </div>
 
                         {/* Animated Description */}
@@ -182,7 +182,7 @@ const Hero = () => {
                             <div className="relative w-full aspect-square max-w-xl">
                                 <Image
                                     src={currentData.foregroundImage}
-                                    alt="Product Feature"
+                                    alt={`${currentData.title} - PrimoTech LLC Security Solutions`}
                                     fill
                                     className="object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
                                 />
