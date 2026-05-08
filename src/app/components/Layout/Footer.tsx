@@ -58,6 +58,7 @@ const Footer = () => {
                                     src="/logo.png" 
                                     alt="PrimoTech Logo" 
                                     fill
+                                    sizes="192px"
                                     className="object-contain p-2"
                                 />
                             </div>

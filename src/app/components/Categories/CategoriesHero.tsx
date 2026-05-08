@@ -37,12 +37,12 @@ const Hero = ({ category }: HeroProps) => {
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
                 <div className="max-w-4xl">
                     {/* Integrated Breadcrumbs */}
-                    <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-[#14C8D4] mb-10">
-                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-2 font-bold"><FaHome className="text-sm" /> Home</Link>
-                        <FaChevronRight className="text-[8px] text-white/30" />
-                        <Link href="/products" className="hover:text-white transition-colors font-bold">Products</Link>
-                        <FaChevronRight className="text-[8px] text-white/30" />
-                        <span className="text-white/60 font-bold">{category?.name}</span>
+                    <div className="flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.3em] text-[#14C8D4] mb-10 overflow-x-auto whitespace-nowrap no-scrollbar py-2">
+                        <Link href="/" className="hover:text-white transition-colors flex items-center gap-2 font-bold shrink-0"><FaHome className="text-sm" /> Home</Link>
+                        <FaChevronRight className="text-[8px] text-white/30 shrink-0" />
+                        <Link href="/products" className="hover:text-white transition-colors font-bold shrink-0">Products</Link>
+                        <FaChevronRight className="text-[8px] text-white/30 shrink-0" />
+                        <span className="text-white/60 font-bold shrink-0">{category?.name}</span>
                     </div>
 
                     {/* Category Identifier */}
@@ -52,7 +52,7 @@ const Hero = ({ category }: HeroProps) => {
                     </div>
 
                     {/* Main Title */}
-                    <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white mb-8 leading-[0.85] tracking-tighter drop-shadow-2xl uppercase">
+                    <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 leading-[1.1] md:leading-[0.85] tracking-tighter drop-shadow-2xl uppercase">
                         {category?.name?.split(' ')[0]}<br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#14C8D4] to-[#14C8D4]">
                             {category?.name?.split(' ').slice(1).join(' ')}

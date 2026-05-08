@@ -83,7 +83,7 @@ const LatestProducts = ({ initialProducts = [] }: { initialProducts?: Product[] 
         <section className="py-24 bg-white overflow-hidden">
             <div className="max-w-[100vw] mx-auto">
                 <div className="text-center mb-16 px-6">
-                    <h2 className="text-5xl lg:text-6xl font-black text-[#001F3F] mb-6 tracking-tight">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#001F3F] mb-6 tracking-tight">
                         The latest must-have products
                     </h2>
                     <div className="w-24 h-1.5 bg-[#14C8D4] mx-auto rounded-full shadow-[0_0_10px_rgba(20,200,212,0.3)]"></div>
@@ -110,6 +110,7 @@ const LatestProducts = ({ initialProducts = [] }: { initialProducts?: Product[] 
                                         src={product.images[0] || 'https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=600&fit=crop'}
                                         alt={product.name}
                                         fill
+                                        sizes="300px"
                                         className="object-contain"
                                         priority
                                     />

@@ -49,7 +49,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-10 flex-1 flex flex-col">
+                <div className="p-8 md:p-10 flex-1 flex flex-col">
                     <div className="mb-4 flex items-center gap-2">
                         <div className="w-8 h-[2px] bg-[#14C8D4]"></div>
                         <span className="text-[#14C8D4] text-[9px] font-black uppercase tracking-widest">Category</span>
@@ -137,7 +137,7 @@ const CategoriesListing = ({ initialCategories = [] }: { initialCategories?: Cat
                         <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-[#14C8D4]/10 rounded-full mb-6 border border-[#14C8D4]/20">
                             <span className="text-[#14C8D4] font-black uppercase tracking-[0.3em] text-[9px]">Our Portfolio</span>
                         </div>
-                        <h3 className="text-5xl md:text-6xl font-black text-[#001F3F] mb-8 leading-[1.1] tracking-tight">
+                        <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#001F3F] mb-8 leading-[1.1] tracking-tight">
                             Specialized <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#001F3F] to-[#14C8D4]">Security Solutions</span>
                         </h3>
                         <p className="text-lg text-gray-500 leading-relaxed font-medium">

@@ -92,6 +92,7 @@ const RelatedProducts = ({ currentCategory, currentProductId }: { currentCategor
                                         src={p.images[0] || '/api/placeholder/400/300'} 
                                         alt={p.name} 
                                         fill 
+                                        sizes="(max-width: 768px) 100vw, 320px"
                                         className="object-contain transition-transform duration-1000"
                                     />
                                 </div>

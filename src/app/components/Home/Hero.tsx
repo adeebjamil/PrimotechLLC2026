@@ -110,6 +110,7 @@ const Hero = () => {
                         src={slide.backgroundImage}
                         alt={slide.title}
                         fill
+                        sizes="100vw"
                         className="object-cover"
                         priority={index === 0}
                     />
@@ -145,7 +146,7 @@ const Hero = () => {
 
                         {/* Animated Title */}
                         <div className="overflow-hidden mb-2">
-                            <h2 className={`text-white text-6xl md:text-8xl font-black leading-[0.8] transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
+                            <h2 className={`text-white text-4xl md:text-6xl lg:text-8xl font-black leading-[1.1] md:leading-[0.8] transition-all duration-700 delay-100 ${isAnimating ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
                                 {currentData.title}
                             </h2>
                         </div>
@@ -178,13 +179,13 @@ const Hero = () => {
 
                     {/* Optional Foreground Image (Right Side) */}
                     {currentData.foregroundImage && (
-                        <div className={`hidden lg:flex justify-center opacity-100`}>
-                            <div className="relative w-full aspect-square max-w-xl">
+                        <div className="flex justify-center mt-12 lg:mt-0">
+                            <div className="relative w-full aspect-square max-w-[280px] md:max-w-md lg:max-w-xl">
                                 <Image
                                     src={currentData.foregroundImage}
                                     alt={`${currentData.title} - PrimoTech LLC Security Solutions`}
                                     fill
-                                    className="object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+                                    className="object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] animate-float"
                                 />
                             </div>
                         </div>
@@ -256,6 +257,14 @@ const Hero = () => {
             <div className="absolute top-1/2 right-0 w-64 h-64 bg-[#3B7597]/5 rounded-full blur-3xl pointer-events-none"></div>
 
             <style jsx>{`
+                @keyframes float {
+                    0% { transform: translateY(0px); }
+                    50% { transform: translateY(-20px); }
+                    100% { transform: translateY(0px); }
+                }
+                .animate-float {
+                    animation: float 6s ease-in-out infinite;
+                }
                 @keyframes progress {
                     from { width: 0%; }
                     to { width: 100%; }

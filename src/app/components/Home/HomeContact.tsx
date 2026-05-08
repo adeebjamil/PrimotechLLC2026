@@ -17,7 +17,7 @@ const HomeContact = () => {
                     <span className="text-[#001F3F] font-black uppercase tracking-[0.4em] text-[10px]">Get In Touch</span>
                 </div>
                 
-                <h2 className="text-6xl md:text-8xl lg:text-9xl font-black text-[#001F3F] mb-12 leading-[0.85] tracking-tighter">
+                <h2 className="text-4xl md:text-7xl lg:text-9xl font-black text-[#001F3F] mb-12 leading-[1.1] md:leading-[0.85] tracking-tighter">
                     Ready to Secure <br/> <span className="text-[#14C8D4]">Your Future?</span>
                 </h2>
                 

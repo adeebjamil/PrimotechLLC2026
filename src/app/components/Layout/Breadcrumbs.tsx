@@ -46,15 +46,15 @@ const Breadcrumbs = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }}
       />
       <div className="max-w-7xl mx-auto px-6">
-        <ol className="flex items-center gap-3 text-sm font-medium text-gray-500">
-          <li className="flex items-center">
+        <ol className="flex items-center gap-3 text-sm font-medium text-gray-500 overflow-x-auto whitespace-nowrap no-scrollbar py-1">
+          <li className="flex items-center shrink-0">
             <Link href="/" className="hover:text-[#14C8D4] transition-colors flex items-center gap-2">
               <FaHome className="text-base" />
               <span className="hidden md:inline">Home</span>
             </Link>
           </li>
           {breadcrumbs.map((crumb, index) => (
-            <li key={crumb.href} className="flex items-center gap-3">
+            <li key={crumb.href} className="flex items-center gap-3 shrink-0">
               <FaChevronRight className="text-[10px] text-gray-300" />
               <Link
                 href={crumb.href}
@@ -68,6 +68,16 @@ const Breadcrumbs = () => {
           ))}
         </ol>
       </div>
+
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </nav>
   );
 };

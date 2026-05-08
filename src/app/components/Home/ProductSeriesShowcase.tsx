@@ -54,7 +54,7 @@ const ProductSeriesShowcase = () => {
                             <div className="w-12 h-[2px] bg-[#14C8D4]"></div>
                             <span className="text-[#14C8D4] font-black uppercase tracking-[0.4em] text-xs">Innovation in Security</span>
                         </div>
-                        <h2 className="text-5xl lg:text-7xl font-black text-[#001F3F] tracking-tighter leading-[0.9]">
+                        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#001F3F] tracking-tighter leading-[1.1] md:leading-[0.9]">
                             Advanced Series <br/> <span className="text-[#14C8D4]">Solutions</span>
                         </h2>
                     </div>
@@ -64,19 +64,20 @@ const ProductSeriesShowcase = () => {
                 </div>
 
                 {/* Cards Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {series.map((item) => (
                         <div 
                             key={item.id}
                             className="group relative h-[650px] rounded-[3.5rem] overflow-hidden bg-[#001F3F] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] hover:-translate-y-4 transition-all duration-700 border border-white/5"
                         >
                             {/* Product Image Layer - Floating and Large */}
-                            <div className="absolute top-12 left-0 right-0 h-[300px] flex items-center justify-center z-10">
+                            <div className="absolute top-8 sm:top-12 left-0 right-0 h-[220px] sm:h-[300px] flex items-center justify-center z-10">
                                 <div className="relative w-full h-full transform group-hover:scale-110 group-hover:-translate-y-4 transition-all duration-1000 ease-out p-12">
                                     <Image 
                                         src={item.image} 
                                         alt={`${item.title} - ${item.subtitle}`} 
                                         fill
+                                        sizes="(max-width: 768px) 100vw, 33vw"
                                         className="object-contain filter drop-shadow-[0_20px_50px_rgba(20,200,212,0.3)]"
                                     />
                                 </div>
@@ -87,7 +88,7 @@ const ProductSeriesShowcase = () => {
                             <div className="absolute -top-32 -right-32 w-80 h-80 bg-[#14C8D4]/10 rounded-full blur-3xl group-hover:bg-[#14C8D4]/20 transition-all duration-1000"></div>
 
                             {/* Content */}
-                            <div className="relative h-full p-12 flex flex-col justify-end z-20">
+                            <div className="relative h-full p-8 sm:p-12 flex flex-col justify-end z-20">
                                 {/* Icon Badge */}
                                 <div className="w-14 h-14 rounded-2xl bg-[#14C8D4]/10 backdrop-blur-md border border-[#14C8D4]/20 flex items-center justify-center mb-8 transform group-hover:rotate-[360deg] transition-all duration-1000">
                                     <item.icon className="text-xl text-[#14C8D4]" />
@@ -97,7 +98,7 @@ const ProductSeriesShowcase = () => {
                                     {item.subtitle}
                                 </span>
                                 
-                                <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
+                                <h3 className="text-2xl sm:text-4xl font-black text-white mb-6 tracking-tight">
                                     {item.title}
                                 </h3>
 
