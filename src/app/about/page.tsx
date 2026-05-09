@@ -30,38 +30,73 @@ export const metadata: Metadata = {
 };
 
 const AboutPage = () => {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "AboutPage",
-        "mainEntity": {
-            "@type": "Organization",
-            "name": "PrimoTech LLC",
-            "description": "Leading manufacturer and supplier of advanced security and IoT solutions in the Middle East.",
-            "url": "https://primotech-llc.com",
-            "logo": "https://primotech-llc.com/logo.png",
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+971-52-879-6664",
-                "contactType": "customer service",
-                "areaServed": "AE",
-                "availableLanguage": "en"
+    const jsonLd = [
+        {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About PrimoTech LLC — Dubai's Leading CCTV & Security Supplier",
+            "description": "Learn about PrimoTech LLC, Dubai's authorized Uniarch CCTV dealer and premier security solutions supplier in the UAE and Middle East.",
+            "url": "https://primotech-llc.com/about",
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://primotech-llc.com" },
+                    { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://primotech-llc.com/about" }
+                ]
             },
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Shop 23, Musthafa Building, Satellite Market, Deira",
-                "addressLocality": "Dubai",
-                "addressRegion": "Dubai",
-                "postalCode": "00000",
-                "addressCountry": "AE"
+            "mainEntity": {
+                "@type": "Organization",
+                "@id": "https://primotech-llc.com/#organization",
+                "name": "PrimoTech LLC",
+                "alternateName": ["PrimoTech", "PrimoTech Dubai"],
+                "description": "PrimoTech LLC is Dubai's authorized Uniarch CCTV dealer and advanced security solutions supplier, serving UAE and the wider GCC region with IP cameras, NVR systems, wireless surveillance kits and professional security consultations.",
+                "url": "https://primotech-llc.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://primotech-llc.com/logo.png"
+                },
+                "email": "sales@primotech-llc.com",
+                "telephone": "+971-52-879-6664",
+                "foundingDate": "2020",
+                "areaServed": [
+                    { "@type": "Country", "name": "United Arab Emirates" },
+                    { "@type": "Country", "name": "Saudi Arabia" },
+                    { "@type": "Country", "name": "Qatar" },
+                    { "@type": "Country", "name": "Kuwait" }
+                ],
+                "knowsAbout": [
+                    "CCTV Security Cameras",
+                    "Uniarch IP Camera Systems",
+                    "NVR Network Video Recorders",
+                    "Wireless Surveillance Kits",
+                    "Security System Design UAE",
+                    "AI-powered Smart Cameras",
+                    "Panda P Series Cameras"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+971-52-879-6664",
+                    "email": "sales@primotech-llc.com",
+                    "contactType": "customer service",
+                    "areaServed": ["AE", "SA", "QA", "KW", "BH", "OM"],
+                    "availableLanguage": ["en", "ar"]
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Shop 23, Musthafa Building, Satellite Market, Deira",
+                    "addressLocality": "Dubai",
+                    "addressRegion": "Dubai",
+                    "addressCountry": "AE"
+                }
             }
         }
-    };
+    ];
 
     return (
         <main className="min-h-screen bg-white">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd[0]) }}
             />
             {/* Section 1: Hero Section */}
             <AboutHero />

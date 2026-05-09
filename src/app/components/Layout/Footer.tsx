@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { 
-    FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn, FaYoutube, 
     FaWhatsapp, FaPhoneAlt, FaRegEnvelope, FaMapMarkerAlt, 
     FaArrowRight, FaChevronRight, FaCheckCircle 
 } from 'react-icons/fa';
@@ -197,24 +196,7 @@ const Footer = () => {
                             </form>
                         )}
 
-                        <div className="flex items-center gap-4">
-                            {[
-                                { icon: FaFacebookF, label: 'Facebook' },
-                                { icon: FaInstagram, label: 'Instagram' },
-                                { icon: FaTwitter, label: 'Twitter' },
-                                { icon: FaLinkedinIn, label: 'LinkedIn' },
-                                { icon: FaYoutube, label: 'YouTube' }
-                            ].map((social, idx) => (
-                                <a
-                                    key={idx}
-                                    href="#"
-                                    className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-[#001F3F] hover:bg-[#14C8D4] hover:text-[#001F3F] transition-all duration-500 shadow-sm border border-gray-100"
-                                    aria-label={social.label}
-                                >
-                                    <social.icon className="text-lg" />
-                                </a>
-                            ))}
-                        </div>
+
                     </div>
                 </div>
 
